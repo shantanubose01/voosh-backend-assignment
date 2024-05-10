@@ -31,9 +31,8 @@ paths:
         200:
           description: User registered successfully
         400:
-          description: 
-                      - User already exists
-                      - invalid email format
+          description: User already exist OR invalid email format
+             
         500:
           description: Server error      
   /user/login:

@@ -1,6 +1,7 @@
 # Voosh Backend Assignment by Shantanu
 
 This project is a backend application developed  for the Voosh backend assignment. It provides an API for user authentication, profile management, and other related functionalities.
+Server is deployed and running on https://voosh-backend-assignment.onrender.com/
 
 ## Getting Started
 
@@ -40,6 +41,12 @@ To get a local copy of this project up and running, follow these steps:
 
    This will start the server using nodemon, which automatically restarts the server when changes are detected.
 
+## Admin creds
+ Since there is no available way built currently to add a admin user. I have already created one and sharing the credentials with you so that you can test admin only features.
+
+ email : admin@gmail.com
+ password : Admin@123   
+
 ## Endpoints
 
  base url - /api
@@ -56,7 +63,7 @@ To get a local copy of this project up and running, follow these steps:
 
 This application provides a Swagger API for easy interaction with the endpoints. Follow the steps below to explore and interact with the API:
 
-1. After starting the server locally, navigate to `http://localhost:3001/api-docs` in your web browser.
+1. After starting the server locally, navigate to `https://voosh-backend-assignment.onrender.com/api-docs` in your web browser.
 
 2. You will be presented with the Swagger UI interface, where you can see all the available endpoints, their descriptions, request parameters, and responses.
 

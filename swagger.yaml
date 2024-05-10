@@ -4,6 +4,7 @@ info:
   title: Enhanced Authentication API
 basePath: /api
 schemes:
+  - https
   - http
 consumes:
   - application/json

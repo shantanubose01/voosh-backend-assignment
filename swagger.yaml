@@ -1,0 +1,207 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Enhanced Authentication API
+basePath: /api
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /user/register:  
+    post:
+      summary: Register a new user
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+      responses:
+        200:
+          description: User registered successfully
+        400:
+          description: 
+                      - User already exists
+                      - invalid email format
+        500:
+          description: Server error      
+  /user/login:
+    post:
+      summary: Login user
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+      responses:
+        200:
+          description: User logged in successfully
+          schema:
+            type: object
+            properties:
+              accessToken:
+                type: string
+        401:
+          description: Invalid credentials
+        404:
+          description: User not found
+        500:
+          description: Server error
+  /user/update:
+    patch:
+      summary: Update user details
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: Bearer token (Format: Bearer <token>)
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+              bio:
+                type: string
+              password:
+                type: string
+              photo:
+                type: string
+      responses:
+        200:
+          description: User details updated successfully
+        401:
+          description: Unauthorized - Missing or invalid token
+        500:
+          description: Server error
+  /user/visibility:
+    patch:
+      summary: Update profile visibility
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: Bearer token (Format: Bearer <token>)
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              isPublic:
+                type: boolean
+      responses:
+        200:
+          description: Profile visibility updated successfully
+        401:
+          description: Unauthorized - Missing or invalid token
+        500:
+          description: Server error
+  /user/profile:
+    get:
+      summary: Get user profile
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: Bearer token (Format: Bearer <token>)
+      responses:
+        200:
+          description: User profile retrieved successfully
+          schema:
+            type: object
+            properties:
+              userId:
+                type: string
+              name:
+                type: string
+              email:
+                type: string
+              bio:
+                type: string
+              photo:
+                type: string
+              userType:
+                type: string
+              isPublic:
+                type: boolean
+        401:
+          description: Unauthorized
+        404:
+          description: User not found
+        500:
+          description: Server error
+  /user/profiles:
+    get:
+      summary: Get all profiles (public and private profiles accessible to admin users and normal users can access public profiles only)
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: Bearer token (Format: Bearer <token>)
+      responses:
+        200:
+          description: Profiles retrieved successfully
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                userId:
+                  type: string
+                name:
+                  type: string
+                email:
+                  type: string
+                bio:
+                  type: string
+                photo:
+                  type: string
+                userType:
+                  type: string
+                isPublic:
+                  type: boolean
+        401:
+          description: Unauthorized
+        500:
+          description: Server error
+  /user/signout:
+    post:
+      summary: Sign out
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: Bearer token (Format: Bearer <token>)
+      responses:
+        200:
+          description: Sign out successful
+        401:
+          description: Unauthorized
+        500:
+          description: Server error
